@@ -22,9 +22,10 @@ html, body{
   to { transform: translateY(15px); }
 }
 
-.speak-bubble svg{
-  height:100px;
-  width:100px;
+.speak-bubble{
+  background: url('./../assets/svg/speak-bubble.svg') no-repeat;
+  height:200px;
+  width:200px;
 }
 
 .speak-bubble *{
