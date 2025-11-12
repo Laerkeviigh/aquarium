@@ -80,6 +80,7 @@ function setupGame() {
   console.clear();
   console.log(`🐢 Collect the ${trashData[nextIndex].name} first!`);
   const sound = new Audio(trashData[nextIndex].audio)
+  //const sound = new Audio('../assets/audio/findcykelhjulet.mp3')
   sound.play()
   
   

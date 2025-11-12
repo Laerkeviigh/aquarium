@@ -49,7 +49,7 @@ const seaInfo = [
     funFact: "Krabber går sidelæns, men de er lynhurtige, når de ser mad - eller farer!",
     uniqueThing: "Er mester i at breakdance 🕺 (sidelæns!)",
     soundSrc: "./assets/audio/jegerenkrabbe.mp3",
-    image:"../assets/svg/krabbe.svg",
+    image:"../assets/svg/crab.svg",
     soundLine: "Klik klik! Jeg går sidelæns som en dansemaskine – pas på mine klør!",
   },
   {

@@ -17,21 +17,6 @@ document.querySelector('.lucide-pause').addEventListener('click', () => {
 });
 
 document.querySelector('.lucide-stop').addEventListener('click', () => {
-  const scene = document.querySelector('.scene');
-  console.log('running lucideBtn stop');
-
-  // Fjern animation (nulstil)
-  scene.style.animation = 'none';
-
-  // Tving browseren til at “genindlæse” stilen
-  scene.offsetHeight; // <- vigtigt trick!
-
-  // Tilføj animation igen
-  scene.style.animation = '';
-
-  // Hvis du bruger en klasse til animationen:
-  // scene.classList.remove('running', 'paused');
-  // void scene.offsetWidth; // trigger reflow
-  // scene.classList.add('running');
+  navigator.reload()
 });
 
