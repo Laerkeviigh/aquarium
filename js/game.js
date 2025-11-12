@@ -61,7 +61,8 @@ function setupGame() {
     trash.dataset.index = i;
     trash.style.position = "absolute";
     trash.style.left = `${spacing * (i + 1)}px`;
-    trash.style.bottom = "3vh";
+    trash.style.bottom = "30vh";
+    trash.style.zIndex = "10";
     trash.innerHTML = `<img src="${img}" width="60">`;
     document.body.appendChild(trash);
   });
@@ -178,7 +179,8 @@ document.body.onpointermove = (event) => {
   if (finished) return;
 
   const { pageX, pageY, clientY } = event;
-  swimmer.style.transform = `translate(${pageX}px, ${pageY}px)`;
+ swimmer.style.transform = `translate(${pageX}px, ${pageY}px)`;
+  swimmer.style.zIndex = "20";
 
   const distanceFromBottom = window.innerHeight - clientY;
   const distanceFromTop = clientY;
