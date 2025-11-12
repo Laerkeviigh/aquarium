@@ -35,7 +35,7 @@ smoothScroll();
 
 // --- Setup game ---
 function setupGame() {
-  itemsContainer.innerHTML = "";
+  itemsContainer.innerHTML += "";
   document.querySelectorAll(".trash, .finish-message, .fish").forEach((el) => el.remove());
 
   carrying = null;

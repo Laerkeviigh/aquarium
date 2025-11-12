@@ -5,6 +5,10 @@
 	right:16px;
 	gap:8px;
   z-index: 1000000;
+  display: flex;
+  top: 4vh;
+  right: 4vw;
+  flex-direction: column;
 }  
 
 .front {
