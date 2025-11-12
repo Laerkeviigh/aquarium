@@ -139,12 +139,17 @@ function deliverTrash(trash, index) {
 
       const resetGameAudio = new Audio('../assets/audio/spilleigen.mp3');
       resetGameAudio.play()
+
       finishGame();
 
 
     }
   } else {
     console.log(`❌ Wrong item! That was the ${trashData[index].name}, you should deliver the ${trashData[nextIndex].name}!`);
+    
+    const wrongItemGameAudio = new Audio('../assets/audio/juhuugennemfoert.mp3');
+    wrongItemGameAudio.play()
+    
     flyBack(trash);
   }
 
