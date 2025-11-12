@@ -4,9 +4,10 @@
 //Yes, så kører vi, det tager kun 2minutter men du redder nutte!
 
 const trashData = [
-  { img: "./assets/svg/cykel.svg", name: "cykel", audio:"./assets/audio/fart.mp3"},
+  { img: "./assets/svg/cykelhjul.svg", name: "Cykelhjul", audio:"./assets/audio/fart.mp3"},
   { img: "./assets/svg/gummistoevle.svg", name: "Gummistøvler", audio:"./assets/audio/fart.mp3"},
-  { img: "./assets/svg/flaske.svg", name: "Flaske", audio:"./assets/audio/fart.mp3"},
+  { img: "./assets/svg/flaske.svg", name: "Glas Flaske", audio:"./assets/audio/fart.mp3"},
+  { img: "./assets/svg/can.svg", name: "Metal dåse", audio:"./assets/audio/fart.mp3"},
 ];
 
 const itemsContainer = document.querySelector(".items");

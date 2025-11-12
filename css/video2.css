@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Londrina+Solid:wght@100;300;400;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap');
 @import url("./controllers.css");
 
 :root {
@@ -26,9 +26,9 @@ body {
   bottom: 0;
   left: 0;
 }
+
 .paused{
   animation-play-state: paused;
-
 }
 
 .running{
@@ -37,6 +37,7 @@ body {
 
 .timeline{
     top: 10vh;
+    left:4vw;
     position: absolute;
     color: #fff;
     font-size: 36px;
@@ -47,26 +48,25 @@ body {
   position: absolute;
   top:4vh;
   right: 4vw;
-
 }
 
 /* Background reef fades in slowly */
 #bg-rev {
   opacity: 0;
   animation: fadeIn var(--duration) linear forwards;
-  animation-delay: 0s;
+  animation-delay: 10s;
 }
 
 .melgr-sand {
   opacity: 0;
   animation: fadeIn var(--duration) linear forwards;
-  animation-delay: 5s;
+  animation-delay: 15s;
 }
 
 .forgr-rev {
   opacity: 0;
   animation: fadeIn var(--duration) linear forwards;
-  animation-delay: 10s;
+  animation-delay: 50s;
 }
 
 /* Fish movement across screen */
@@ -164,15 +164,22 @@ body {
   width: 80px;
   opacity: 0;
   transform: translateY(40px) scale(0.9);
-  animation-name: appear;
+}
+.tang{
+  animation: fadeIn 10s 10s linear forwards;
+}
+
+.haj{
+  animation: appearHaj var(--duration) 28s linear forwards;
+
 }
 
 /* KEYFRAMES — no calc/vars in selectors */
 @keyframes fadeIn {
   0%   { opacity: 0; }
-  2%   { opacity: 1; }   /* quick fade in after the delay kicks in */
+  2%   { opacity: .5; }   /* quick fade in after the delay kicks in */
   90%  { opacity: 1; }
-  100% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes appear {
@@ -184,7 +191,20 @@ body {
 
 @keyframes appearNutte {
   0%   { opacity: 0; transform: translateY(40px) scale(0.1); }
-  5%   { opacity: 1; transform: translateY(45vw)     scale(1); }
-  90%  { opacity: 1; transform: translateY(0)     scale(2); }
-  100% { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  5%   { opacity: 1; transform: translateY(15vh)     scale(2); }
+  50% {transform:rotate(-5%)}
+  51% {transform:rotate(5%)}
+  52% {transform:rotate(-5%)}
+  53% {transform:rotate(5%)}
+  54% {transform:rotate(-5%)}
+  55% {transform:rotate(5%)}
+  90%  { opacity: 1; transform: translateY(29vh)     scale(3); }
+  100% { opacity: 0; transform: translateY(-10px) scale(3); }
+}
+
+@keyframes appearHaj {
+  0%   { opacity: 0; transform: translateZ(1000px) scale(0.1); }
+  5%   { opacity: 1; transform: translateX(45vh)     scale(1); }
+  90%  { opacity: 1; transform: translateY(0)     scale(2.2); }
+  100% { opacity: 1; transform: translateY(0) scale(3.5); }
 }

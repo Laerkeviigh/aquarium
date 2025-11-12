@@ -9,6 +9,7 @@ const seaInfo = [
     funFact: "Vandmænd er nogle af de ældste dyr på Jorden! De har ingen hjerne eller hjerte – kun vand og gelé.",
     uniqueThing: "Kan lyse i mørket som et undervands-spøgelse 👻",
     soundSrc: "sounds/vandmand.mp3",
+    image:"./assets/svg/hjaelpfisk.svg",
     soundLine: "Heeej, jeg er en vandmand! Jeg danser som gelé gennem havet og kan lyse i mørket!",
   },
   {
@@ -150,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Tooltip på hover
       elem.addEventListener("mouseover", () => {
         const html = `
+        <img src="${sea.image}" width="50px" alt="billede af ${sea.animalName}">
           <strong>${sea.animalName}</strong><br>
           Alder: ${sea.age}<br>
           Sjov fakta: ${sea.funFact}<br>
@@ -168,7 +170,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+const nutte = document.querySelector('.nutte')
+const vandmand = document.querySelector('.vandmand')
 
+//const soundIroh = new Audio("./../sound/hot-leaf-juice.mp3");
+
+//const soundZuko = new Audio("./../sound/thats-rough-buddy.mp3");
+
+function swapImages() {
+  vandmand.classList.toggle("swapped-right");
+  nutte.classList.toggle("swapped-left");
+}
+
+if (nutte) {
+  nutte.addEventListener("click", () => {
+    swapImages();
+    console.log('nutte')
+  //  soundIroh.play();
+  });
+}
+
+if (vandmand) {
+  vandmand.addEventListener("click", () => {
+    swapImages();
+    console.log('vandmand')
+
+    // soundZuko.play();
+  });
+}
 
 
 //   //Hent DOM elementer

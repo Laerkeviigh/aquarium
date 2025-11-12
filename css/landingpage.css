@@ -19,8 +19,8 @@ body {
   background-size: 200% 200%;
   animation: waterFlow 10s ease-in-out infinite alternate;
   overflow: hidden;
-  
 }
+
 
 /* smooth glowing motion */
 @keyframes waterFlow {
@@ -54,10 +54,10 @@ body {
 }
 
 /* Different bubbles start at slightly different times */
-.speak-bubble:nth-child(1) { animation-delay: 0s; }
-.speak-bubble:nth-child(2) { animation-delay: 0.2s; }
-.speak-bubble:nth-child(3) { animation-delay: 0.4s; }
-.speak-bubble:nth-child(4) { animation-delay: 0.6s; }
+.speak-bubble:nth-child(1) { animation-delay: 0s; transform: scale(.5); }
+.speak-bubble:nth-child(2) { animation-delay: 0.2s; transform: scale(.7);}
+.speak-bubble:nth-child(3) { animation-delay: 0.4s; transform: scale(.8);}
+.speak-bubble:nth-child(4) { animation-delay: 0.6s; transform: scale(5);}
 
 @keyframes talk {
   0%, 100% {
@@ -110,12 +110,12 @@ body {
 .options{
     position: absolute;
     z-index: 100;
-    top: 10px;
+    bottom: 90px;
     display: flex;
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    align-items: center;
+    align-items: end;
     gap: 150px;
     pointer-events: none;
 }
@@ -147,40 +147,110 @@ body {
 }
 
 .landing object {
-  animation: float 6s ease-in-out infinite;
+  /* animation: float 6s ease-in-out infinite; */
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.25));
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 /* Keyframes for mild floating animation */
 @keyframes float {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-6px) rotate(1deg);
-  }
-  50% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  75% {
-    transform: translateY(6px) rotate(-1deg);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
+
+.character {
+  animation: float 4s ease-in-out infinite;
+}
+
 
 /* Ekstra “shine” effekt, hvis du vil bruge det */
 .landing object:hover {
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.3))
           brightness(1.05)
           saturate(1.1);
-  transform: translateY(-4px) scale(1.03);
+  /* transform: translateY(-4px) scale(1.03); */
 }
 
 
-.sea1, .sea2, .trash1,.trash2,.trash4, .sea10
+
+/* .sea1, .sea2, .trash1,.trash2,.trash4, .sea10
 {
     transform: scale(0.5) !important;
+} */
+
+
+.infinite-slider {
+  width: 100vw;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  /* background: linear-gradient(270deg, #009dff, #0066ff); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
 }
+
+.slide-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+.infinite-slider object {
+  pointer-events: auto !important;
+}
+
+
+.slide-track object {
+  width: 120px;
+  height: 120px;
+  margin: 0 2rem;
+  pointer-events: none;
+  opacity: 0.9;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.slide-track object:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* Swap animations */
+.swapped-right {
+  /* transform: translateX(700px); */
+   transform: translate(-50%, -50%); 
+    position: absolute;
+  top: 50%;
+  left: 30%;
+}
+
+.swapped-left {
+  /* transform: translateX(-700px); */
+  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 60%;
+}
+
+/* .nutte{
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  }
+  
+  .vandmand{
+    position: absolute;
+    top: 50%;
+    left: 60%;
+} */

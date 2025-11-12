@@ -16,48 +16,14 @@ document.querySelector('.lucide-pause').addEventListener('click', () => {
   document.querySelectorAll('*').forEach(el => el.style.animationPlayState = 'paused');
 });
 
-const machine = document.getElementById("machine");
-const timerDisplay = document.getElementById("timer");
-const toggleBtn = document.getElementById("toggle");
+//fix stop knap!
+document.querySelector('.lucide-stop').addEventListener('click', () => {
+  document.querySelector('.scene').style.animationPlayState = 'unset';
+//   document.querySelector('.scene::after').style.animationPlayState = 'paused';
+ // document.querySelector('.scene').classList.add('paused');
 
-// Read CSS custom property (returns something like "120s")
-const durationStr = getComputedStyle(machine).getPropertyValue("--duration").trim();
-const duration = parseFloat(durationStr) * (durationStr.endsWith("ms") ? 1 : 1000); // convert to ms
-
-let timeLeft = duration / 1000;
-let interval = null;
-
-// Start countdown
-function startTimer() {
-  if (interval) return;
-  interval = setInterval(() => {
-    if (machine.classList.contains("running")) {
-        console.log('init')
-      timeLeft -= 1;
-      timerDisplay.textContent = Math.max(0, Math.ceil(timeLeft));
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-        machine.classList.remove("running");
-        machine.classList.add("paused");
-      }
-    }
-  }, 1000);
-}
-
-
-
-startTimer();
-
-
-
-// Toggle pause/resume
-toggleBtn.addEventListener("click", () => {
-  if (machine.classList.contains("running")) {
-    machine.classList.remove("running");
-    machine.classList.add("paused");
-  } else {
-    machine.classList.remove("paused");
-    machine.classList.add("running");
-  }
+  console.log('running lucideBtn stop')
+  //document.querySelectorAll('*').forEach(el => setAttribute('animaiton',el.style.animationPlayState));
 });
+
 
