@@ -92,7 +92,7 @@ const seaInfo = [
     uniqueThing: "Dory kan tale hvalsprog 🐋🐟💭",
     soundSrc: "sounds/dory.mp3",
     soundLine: "Hej, jeg er Dory! Hvad var det nu, jeg skulle sige? Åh ja – bare svømme, bare svømme, bare svømme!",
-  }
+  },
   
   {
   className: "dannebrogsreje-slide",
