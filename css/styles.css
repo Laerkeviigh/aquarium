@@ -214,9 +214,10 @@ html, body{
   height: auto;
   min-width: 100%;
   display: block;
-  z-index: 1; /* keep sand underneath items */
+  z-index: 1; 
   transform: translateY(var(--sand-lift));
-  pointer-events: none; /* clicks should reach items */
+  pointer-events: none; /
+
 }
 
 
