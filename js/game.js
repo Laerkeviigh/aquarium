@@ -4,10 +4,10 @@
 //Yes, så kører vi, det tager kun 2minutter men du redder nutte!
 
 const trashData = [
-  { img: "./assets/svg/cykelhjul.svg", name: "Cykelhjul", audio:"./assets/audio/cykelhjul.mp3"},
-  { img: "./assets/svg/gummistoevle.svg", name: "Gummistøvler", audio:"./assets/audio/gummistøvle.mp3"},
-  { img: "./assets/svg/flaske.svg", name: "Glas Flaske", audio:"./assets/audio/pantflaske.mp3"},
-  { img: "./assets/svg/can.svg", name: "Metal dåse", audio:"./assets/audio/metalcan.mp3"},
+  { img: "./assets/svg/cykelhjul.svg", name: "Cykelhjul", audio:"./assets/audio/findcykelhjulet.mp3"},
+  { img: "./assets/svg/gummistoevle.svg", name: "Gummistøvler", audio:"./assets/audio/findgummistoevlen.mp3"},
+  { img: "./assets/svg/flaske.svg", name: "Glas Flaske", audio:"./assets/audio/findpantflaske.mp3"},
+  { img: "./assets/svg/can.svg", name: "Metal dåse", audio:"./assets/audio/findmetalcan.mp3"},
 ];
 
 const itemsContainer = document.querySelector(".items");
@@ -32,10 +32,67 @@ function smoothScroll() {
 }
 smoothScroll();
 
+let hasPlayed = false;
+
+document.body.addEventListener("scroll", () => {
+  if (!hasPlayed && window.scrollY >= 400) {
+    const resetGameAudio = new Audio('../assets/audio/sharkdanger.mp3');
+    resetGameAudio.play();
+    hasPlayed = true;
+  }
+});
+
+// Get the div to display the timer
+const timerDiv = document.getElementById('timer');
+
+// Initialize the timer variables
+let startTime;
+let stopTime;
+
+function startTimer() {
+  // Start the timer when the button is clicked
+  startTime = new Date().getTime();
+  setInterval(updateTimer, 10);
+}
+
+function stopTimer() {
+  // Stop the timer when the button is clicked
+  clearInterval(intervalId);
+  const elapsedTime = (new Date().getTime() - startTime) / 1000;
+  timerDiv.innerHTML = `Elapsed time: ${elapsedTime} seconds`;
+  //saveTime?
+  //const name =
+  //to localstorage here!!!!
+}
+
+let intervalId;
+
+// Update the timer every 10ms
+function updateTimer() {
+  const currentTime = new Date().getTime();
+  if (!startTime || !stopTime) return; // Timer not started or stopped yet
+
+  const elapsedTime = (currentTime - startTime);
+  timerDiv.innerHTML = `Elapsed time: ${elapsedTime} ms`;
+}
+
+// Start the timer when the page loads
+document.addEventListener('DOMContentLoaded', startTimer);
+
+// Stop and restart the timer on button clicks
+const stopButton = document.getElementById('stop-button');
+// stopButton.addEventListener('click', () => {
+//   stopTimer();
+// });
+
+const startAgainButton = document.getElementById('start-again-button');
+startAgainButton.addEventListener('click', startTimer());
 
 // --- Setup game ---
 function setupGame() {
-  itemsContainer.innerHTML += "";
+   const intro = new Audio('../assets/audio/balladeIHavet.mp3')
+      intro.play()
+  itemsContainer.innerHTML = "";
   document.querySelectorAll(".trash, .finish-message, .fish").forEach((el) => el.remove());
 
   carrying = null;
@@ -67,11 +124,15 @@ function setupGame() {
     document.body.appendChild(trash);
   });
 
-  console.clear();
+
   console.log(`🐢 Collect the ${trashData[nextIndex].name} first!`);
-  new Audio(trashData[nextIndex].audio).play()
+  const sound = new Audio(trashData[nextIndex].audio)
+  //const sound = new Audio('../assets/audio/findcykelhjulet.mp3')
+  sound.play()
+  
   
   createFish();
+  
 }
 
 // --- Create fixed fish (danger!) ---
@@ -84,6 +145,7 @@ function createFish() {
   fish.style.left = "10vw";
   document.body.appendChild(fish);
 
+    startTimer()
 	
   let direction = 1;
   setInterval(() => {
@@ -117,14 +179,26 @@ function deliverTrash(trash, index) {
     console.log(`✅ Delivered the ${trashData[index].name} correctly!`);
     nextIndex++;
     if (nextIndex < trashData.length) {
-      console.log('yoyo')
       console.log(`👉 Next: collect the ${trashData[nextIndex].name}`);
-      new Audio(trashData[nextIndex].audio).play()
+      const findNextAudio = new Audio(trashData[nextIndex].audio);
+      findNextAudio.play()
     } else {
+      const gameDoneAudio = new Audio('../assets/audio/juhuugennemfoert.mp3');
+      gameDoneAudio.play()
+
+      const resetGameAudio = new Audio('../assets/audio/spilleigen.mp3');
+      resetGameAudio.play()
+
       finishGame();
+
+
     }
   } else {
     console.log(`❌ Wrong item! That was the ${trashData[index].name}, you should deliver the ${trashData[nextIndex].name}!`);
+    
+    const wrongItemGameAudio = new Audio('../assets/audio/provIgen.mp3');
+    wrongItemGameAudio.play()
+    
     flyBack(trash);
   }
 
@@ -151,7 +225,7 @@ function flyBack(trash) {
   requestAnimationFrame(animate);
 }
 
-// --- Finish message ---
+// -----||||-- MAKE TO HTML DELETE THIS SHIT CODE!
 function finishGame() {
   finished = true;
   const msg = document.createElement("div");
@@ -179,7 +253,7 @@ document.body.onpointermove = (event) => {
   if (finished) return;
 
   const { pageX, pageY, clientY } = event;
- swimmer.style.transform = `translate(${pageX}px, ${pageY}px)`;
+ swimmer.style.transform = `translate(${event.clientX}px, ${event.clientY + window.scrollY}px)`;
   swimmer.style.zIndex = "20";
 
   const distanceFromBottom = window.innerHeight - clientY;
@@ -230,5 +304,7 @@ if (distanceFromTop < 200) targetScroll -= 50;
   }
 };
 
-// --- Start the game ---
-setupGame();
+
+
+// Wait for user to interact before starting the game
+document.body.addEventListener('pointermove', setupGame,{ once: true });
